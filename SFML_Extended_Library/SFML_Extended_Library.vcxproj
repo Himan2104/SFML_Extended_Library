@@ -163,13 +163,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animator.hpp" />
     <ClInclude Include="Button.hpp" />
+    <ClInclude Include="CheckBox.hpp" />
     <ClInclude Include="guibase.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="TextBox.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CheckBox.cpp" />
     <ClCompile Include="guibase.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

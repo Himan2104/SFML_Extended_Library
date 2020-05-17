@@ -55,7 +55,7 @@ void gui::TextBox::EventHandler(sf::Event e, const sf::RenderWindow& window)
 			{
 				if (e.text.unicode == 8 && !str.empty())
 					str.pop_back();
-				else if (inputText.getGlobalBounds().width < box.getGlobalBounds().width - 6.0f)
+				else if (inputText.getGlobalBounds().width < box.getGlobalBounds().width - (box.getOutlineThickness()*3.0f))
 					str += static_cast<char>(e.text.unicode);
 				inputText.setString(str);
 				adjustInputText();	
@@ -89,7 +89,7 @@ void gui::TextBox::adjustInputText()
 {
 	inputText.setCharacterSize(box.getGlobalBounds().height/2.0f);
 	inputText.setOrigin(inputText.getGlobalBounds().width / 2.0f, inputText.getGlobalBounds().height / 2.0f);
-	inputText.setPosition(box.getPosition() - sf::Vector2f(0.0f, inputText.getGlobalBounds().height / 2.0f));
+	inputText.setPosition(box.getPosition() - sf::Vector2f(0.0f, inputText.getGlobalBounds().height / 10.0f));
 }
 
 void gui::TextBox::adjustLabel()

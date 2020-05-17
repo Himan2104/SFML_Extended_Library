@@ -1,32 +1,22 @@
 #include "pch.h"
 #include "Button.hpp"
 
-gui::Button::Button(sf::Vector2f size, std::string ButtonText, int CharSize)
+gui::Button::Button(sf::Font& font, sf::Vector2f size, std::string ButtonText)
 { 
-	//variables
-	adjustmentFactor = { 0.0f, 0.0f};
-
-	//configuration
 	box.setSize(size);
+	text.setFont(font);
 	text.setString(ButtonText);
-	text.setCharacterSize(CharSize);
 	box.setOrigin(box.getGlobalBounds().width / 2.0f, box.getGlobalBounds().height / 2.0f);
+
 	adjustText();
 
 	box.setFillColor(sf::Color::Magenta);
 	text.setFillColor(sf::Color::White);
 }
 
-void gui::Button::changeAdjustmentFactor(sf::Vector2f& adjustmentFactor)
+void gui::Button::setTextStyle(sf::Uint32 style)
 {
-	this->adjustmentFactor = adjustmentFactor;
-	adjustText();
-}
-
-void gui::Button::setFont(sf::Font& font)
-{
-	text.setFont(font);
-	adjustmentFactor = { 0.0f, -text.getGlobalBounds().height / 2.0f };
+	text.setStyle(style);
 	adjustText();
 }
 
@@ -71,9 +61,8 @@ void gui::Button::EventHandler(sf::Event e, const sf::RenderWindow& window)
 
 void gui::Button::adjustText()
 {
-	text.setOrigin(text.getGlobalBounds().width/2.0f, text.getGlobalBounds().height/2.0f);
-	text.setPosition(box.getPosition() + adjustmentFactor);
-	
+	text.setCharacterSize(int(box.getGlobalBounds().height / 2.0f));
+	text.setOrigin(text.getGlobalBounds().width / 2.0f, text.getGlobalBounds().height / 2.0f);
 	while (text.getGlobalBounds().left < box.getGlobalBounds().left
 		|| text.getGlobalBounds().left + text.getGlobalBounds().width
 		> box.getGlobalBounds().left + box.getGlobalBounds().width
@@ -83,6 +72,6 @@ void gui::Button::adjustText()
 	{
 		text.setCharacterSize(text.getCharacterSize() - 1);
 		text.setOrigin(text.getGlobalBounds().width / 2.0f, text.getGlobalBounds().height / 2.0f);
-		text.setPosition(box.getPosition() + adjustmentFactor);
+		text.setPosition(box.getPosition() - sf::Vector2f(0.0f, text.getGlobalBounds().height/2.0f));
 	}
 }

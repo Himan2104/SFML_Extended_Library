@@ -9,13 +9,11 @@ namespace gui
 	class Button : public guibase
 	{
 	public:
-		Button(sf::Vector2f size = sf::Vector2f(256.0f, 64.0f), std::string ButtonText = "NewButton", int CharSize = 30);
-	
-		void changeAdjustmentFactor(sf::Vector2f& adjustmentFactor);
+		Button(sf::Font& font, sf::Vector2f size = sf::Vector2f(256.0f, 64.0f), std::string ButtonText = "NewButton");
 
-		void setFont(sf::Font& font);
+		void setTextStyle(sf::Uint32 style);
 
-		void setColor(sf::Color BoxColor, sf::Color);
+		void setColor(sf::Color BoxColor, sf::Color TextColor);
 
 		void setPosition(const sf::Vector2f& pos) override;
 
@@ -30,8 +28,6 @@ namespace gui
 	private:
 		sf::RectangleShape box;
 		sf::Text text;
-
-		sf::Vector2f adjustmentFactor;
 
 		std::function<void(void)> ButtonFunction;
 
