@@ -20,7 +20,7 @@ int main()
 
 	newButton.setTextStyle(sf::Text::Bold | sf::Text::Italic);
 
-	gui::CheckBox newBox(font,"LODA HAI KYA?", 5.769f);
+	gui::CheckBox newBox(font,"ShowButton", 5.769f);
 	newBox.setPosition(sf::Vector2f(100.0f, 100.0f));
 
 	//main loop
@@ -39,7 +39,7 @@ int main()
 	
 		//render
 		window.clear();
-		newButton.render(window);
+		if(newBox.getStatus())newButton.render(window);
 		newBox.render(window);
 		window.display();
 	}
